@@ -21,10 +21,9 @@ public class GoogleVoiceTest {
     @DataProvider(name = "voiceSearch")
     public static Object[][] voiceSearchTestData() {
         return new Object[][]{
-                {"weather today"},
-                {"show me the direction for atlanta"},
-                {"magnificent 7 show timings"},
-                {"will it rain tomorrow"},
+                {"temperature in Delhi"},
+                {"show me the direction to Mumbai"},
+                {"Avengers Infinity war show timings"},
                 {"amazon stock price"}
         };
     }
