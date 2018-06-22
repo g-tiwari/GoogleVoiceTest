@@ -3,6 +3,7 @@ package com.se2automate.google.test;
 import com.se2automate.google.pages.GoogleSearchPage;
 import com.se2automate.google.pages.GoogleSearchResultsPage;
 import com.se2automate.util.VoiceUtil;
+import com.se2automate.voice.client.Language;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -21,17 +22,15 @@ public class GoogleVoiceTest {
     @DataProvider(name = "voiceSearch")
     public static Object[][] voiceSearchTestData() {
         return new Object[][]{
-                {"temperature in Delhi"},
-                {"show me the direction to Mumbai"},
-                {"Avengers Infinity war show timings"},
+                {"temperature in delhi"},
+                {"Flights for San Francisco"},
+                {"Avengers infinity war show timings"},
                 {"amazon stock price"}
         };
     }
 
     @BeforeClass
     public void setup() {
-        //allocate memory for voice synthesizer
-        VoiceUtil.allocate();
         WebDriverManager.chromedriver().setup();
 
     }
@@ -50,11 +49,13 @@ public class GoogleVoiceTest {
     public void googleVoiceSearchTest(String searchText) throws InterruptedException {
         GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
         googleSearchPage.startListening();
-        VoiceUtil.speak(searchText);
+
+        VoiceUtil.speak(searchText, Language.ENGLISH_US);
+
         googleSearchPage.stopListening();
         //added this wait so that user can see voice recognised during test execution
         Thread.sleep(5000L);
-        Assert.assertEquals(searchText, googleSearchPage.getVoiceSearchText().toLowerCase());
+        Assert.assertEquals(searchText.toLowerCase(), googleSearchPage.getVoiceSearchText().toLowerCase());
         GoogleSearchResultsPage googleSearchResultsPage = new GoogleSearchResultsPage(driver);
         googleSearchResultsPage.show();
     }
@@ -62,10 +63,5 @@ public class GoogleVoiceTest {
     @AfterMethod
     public void tearDown() {
         driver.quit();
-    }
-
-    @AfterClass
-    public void deallocate() {
-        VoiceUtil.deallocate();
     }
 }

@@ -1,5 +1,5 @@
 # GoogleVoiceTest
-This is sample voice test written using Selenium with Free TTS library
+This is sample voice test written using Selenium with VoiceAutomationClient and VoiceAutomationServer
 
 This demo will open chrome browser and perform voice search with given search text
 
@@ -11,4 +11,4 @@ yup ,that's all you need :)
 ## Steps
 1. Clone the repository
 2. Go to cloned folder **GoogleVoiceTest** from command-line
-3. type **mvn test** and hit enter
+3. type **mvn test -D-DVoiceAutomationServerEndpoint=<VoiceServerEndPointURL>  -DVoiceRssKey=<API_Key_FromVoiceRSS>** and hit enter

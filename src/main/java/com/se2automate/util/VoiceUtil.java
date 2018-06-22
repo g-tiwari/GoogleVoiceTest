@@ -1,60 +1,50 @@
 package com.se2automate.util;
 
-import javax.speech.AudioException;
-import javax.speech.Central;
-import javax.speech.EngineException;
-import javax.speech.synthesis.Synthesizer;
-import javax.speech.synthesis.SynthesizerModeDesc;
-import java.util.Locale;
+import com.se2automate.voice.client.Language;
+import com.se2automate.voice.client.impl.VoiceAutomationClient;
+import com.se2automate.voice.clientresources.impl.ClientOperationException;
+import com.se2automate.voice.clientresources.impl.Voice;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.net.URL;
 
 /**
  * created By Gaurav Tiwari
  */
 public class VoiceUtil {
-    private static com.sun.speech.freetts.Voice systemVoice = null;
-    private static Synthesizer synthesizer;
+    static final Logger LOG = LoggerFactory.getLogger(VoiceUtil.class);
 
-    public static void allocate() {
+    public static void speak(String text, Language language){
+
         try {
-            // set property as Kevin Dictionary
-            System.setProperty("freetts.voices",
-                    "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
-
-            // Register Engine
-            Central.registerEngineCentral
-                    ("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");
-
-            // Create a Synthesizer
-            synthesizer =
-                    Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));
-
-            // Allocate synthesizer
-            synthesizer.allocate();
-            // Resume Synthesizer
-            synthesizer.resume();
-        } catch (EngineException e) {
+            Voice voice = new Voice(text, language);
+            VoiceAutomationClient voiceAutomationClient = new VoiceAutomationClient();
+            voiceAutomationClient.load(voice);
+            voiceAutomationClient.play(voice);
+            LOG.info(voice.getFilename());
+            LOG.info(voice.getText());
+            LOG.info(voice.getVoiceName());
+            LOG.info(voice.getVoiceLanguage().toString());
+        }catch (ClientOperationException e){
             e.printStackTrace();
-        } catch (AudioException ex) {
+        }catch (Exception ex){
             ex.printStackTrace();
         }
     }
 
-    public static void speak(String text) {
-        synthesizer.speakPlainText(text, null);
-        try {
-            synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
-            // speaks the given text until queue is empty.
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+    public static void playInternetVoiceFile(String url){
 
-    public static void deallocate() {
-        // Deallocate the Synthesizer.
         try {
-            synthesizer.deallocate();
-        } catch (EngineException e) {
+            URL voiceUrl = new URL(url);
+            Voice voice = new Voice(voiceUrl);
+            VoiceAutomationClient voiceAutomationClient = new VoiceAutomationClient();
+            voiceAutomationClient.load(voice);
+            voiceAutomationClient.play(voice);
+            LOG.info(voice.getFilename());
+        }catch (ClientOperationException e){
             e.printStackTrace();
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }
