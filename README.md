@@ -12,4 +12,4 @@ For that please refer to [VoiceAutomationClient](https://github.com/g-tiwari/Voi
 ## Steps
 1. Clone the repository
 2. Go to cloned folder **GoogleVoiceTest** from command-line
-3. type **mvn test -D-DVoiceAutomationServerEndpoint="<VoiceServerEndPointURL>"  -DVoiceRssKey="<API_Key_FromVoiceRSS>"** and hit enter
+3. type **mvn test -DVoiceAutomationServerEndpoint="<VoiceServerEndPointURL>"  -DVoiceRssKey="<API_Key_FromVoiceRSS>"** and hit enter
