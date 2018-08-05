@@ -22,10 +22,10 @@ public class GoogleVoiceTest {
     @DataProvider(name = "voiceSearch")
     public static Object[][] voiceSearchTestData() {
         return new Object[][]{
-                {"temperature in delhi"},
-                {"Flights for San Francisco"},
-                {"Avengers infinity war show timings"},
-                {"amazon stock price"}
+                {"football world cup live",Language.ENGLISH_INDIA},
+                {"temperature in delhi",Language.ENGLISH_UK},
+                {"Amazon stock price",Language.ENGLISH_US},
+                {"Why Kattappa killed Bahubali",Language.ENGLISH_INDIA}
         };
     }
 
@@ -46,11 +46,11 @@ public class GoogleVoiceTest {
     }
 
     @Test(dataProvider = "voiceSearch")
-    public void googleVoiceSearchTest(String searchText) throws InterruptedException {
+    public void googleVoiceSearchTest(String searchText,Language language) throws InterruptedException {
         GoogleSearchPage googleSearchPage = new GoogleSearchPage(driver);
         googleSearchPage.startListening();
 
-        VoiceUtil.speak(searchText, Language.ENGLISH_US);
+        VoiceUtil.speak(searchText, language);
 
         googleSearchPage.stopListening();
         //added this wait so that user can see voice recognised during test execution
