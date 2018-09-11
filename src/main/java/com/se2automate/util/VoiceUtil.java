@@ -1,9 +1,10 @@
 package com.se2automate.util;
 
-import com.se2automate.voice.client.Language;
-import com.se2automate.voice.client.impl.VoiceAutomationClient;
-import com.se2automate.voice.clientresources.impl.ClientOperationException;
-import com.se2automate.voice.clientresources.impl.Voice;
+
+import in.co.gauravtiwari.voice.client.VoiceAutomationClient;
+import in.co.gauravtiwari.voice.clientresources.ClientOperationException;
+import in.co.gauravtiwari.voice.clientresources.Voice;
+import in.co.gauravtiwari.voice.design.Language;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.net.URL;

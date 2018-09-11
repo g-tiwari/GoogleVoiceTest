@@ -3,7 +3,7 @@ package com.se2automate.google.test;
 import com.se2automate.google.pages.GoogleSearchPage;
 import com.se2automate.google.pages.GoogleSearchResultsPage;
 import com.se2automate.util.VoiceUtil;
-import com.se2automate.voice.client.Language;
+import in.co.gauravtiwari.voice.design.Language;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +22,7 @@ public class GoogleVoiceTest {
     @DataProvider(name = "voiceSearch")
     public static Object[][] voiceSearchTestData() {
         return new Object[][]{
-                {"football world cup live",Language.ENGLISH_INDIA},
+                {"football world cup live", Language.ENGLISH_INDIA},
                 {"temperature in delhi",Language.ENGLISH_UK},
                 {"Amazon stock price",Language.ENGLISH_US},
                 {"Why Kattappa killed Bahubali",Language.ENGLISH_INDIA}
