@@ -14,7 +14,7 @@ public class GoogleSearchPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private By microphoneID = By.id("gsri_ok0");
+    private By microphoneID = By.className("voice_search_button");
     private By enlargedMicroPhoneId = By.id("spchb");
 
     private By searchBoxLocator = By.name("q");

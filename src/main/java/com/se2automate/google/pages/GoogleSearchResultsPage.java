@@ -14,7 +14,7 @@ public class GoogleSearchResultsPage {
     private WebDriverWait wait;
 
 
-    private By resultHeaderLocator = By.cssSelector("h3 a");
+    private By resultHeaderLocator = By.cssSelector("a h3");
     private By resultTextLocator = By.cssSelector("span.st");
     private By resultsListLocator = By.cssSelector(".rc");
 
